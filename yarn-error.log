@@ -1,0 +1,43 @@
+Arguments: 
+  D:\Program Files\nodejs\node.exe C:\Users\tercel\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  C:\PROGRAM FILES (X86)\NVIDIA CORPORATION\PHYSX\COMMON;C:\WINDOWS\SYSTEM32;C:\WINDOWS;C:\WINDOWS\SYSTEM32\WBEM;C:\WINDOWS\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;D:\Program Files\jre\Java\jdk1.8.0_77\BIN;;D:\Program Files (x86)\Microsoft VS Code\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\Program Files\nodejs\;D:\Program Files (x86)\Microsoft VS Code\bin;C:\Users\tercel\AppData\Local\Microsoft\WindowsApps;C:\Users\tercel\AppData\Roaming\npm;C:\Program Files\MongoDB\Server\3.4\bin;
+
+Yarn version: 
+  1.9.4
+
+Node version: 
+  8.11.3
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\tercel\AppData\Local\Yarn\Cache\v2\npm-setprototypeof-1.0.3-66567e37043eeb4f04d91bd658c0cbefb55b8e04\LICENSE' -> 'F:\h5\exc\user\node_modules\raw-body\node_modules\setprototypeof\LICENSE'
+
+npm manifest: 
+  {
+    "name": "project",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www"
+    },
+    "dependencies": {
+      "cookie-parser": "~1.4.3",
+      "debug": "~2.6.9",
+      "ejs": "~2.5.7",
+      "express": "~4.16.0",
+      "http-errors": "~1.6.2",
+      "morgan": "~1.9.0"
+    },
+    "main": "index.js",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
