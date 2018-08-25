@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 //用户登录
 //http://localhost:3000/users/login
-router.post("login",function(res,res,next){
+router.post("/login",function(res,res,next){
   res.send("用户登录处理")
 });
 

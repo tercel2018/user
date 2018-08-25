@@ -1,6 +1,7 @@
 //登录模态框
 function LoginModal(){
     this.createDom();
+    //调用事件监听
     this.addListener();
 }
 
@@ -16,21 +17,23 @@ LoginModal.template = `
         </div>
         <div class="modal-body">
            <!-- 表单 -->
-          <form>
+          <form class= "login_form">
               <div class="form-group">
-                <label for="exampleInputEmail1">用户名</label>
-                <input type="email" class="form-control" id="password" placeholder="请输入用户名">
+                <label for="exampleInputEmail1" >用户名</label>
+                <input type="email" class="form-control" name ="username" placeholder="请输入用户名">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">密码</label>
-                <input type="password" class="form-control" id="password_a" placeholder="输入密码">
+                <input type="password" class="form-control"  name = "password" placeholder="输入密码">
               <div class="form-group"> 
                 <label for="loginCode">验证码</label>
                 <input type="text" id="loginCode" placeholder="验证码">
-                <p class="help-block">这是个验证码图片</p>
+                <p class="help-block code_img">这是个验证码图片</p>
+                <span class="input-group-addon code-info">信息</span>
+                
               </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-default">登录</button>
+                  <button type="button" class="btn login btn-default">登录</button>
                 </div>
             </form>
         </div>
@@ -47,7 +50,41 @@ $.extend(LoginModal.prototype,{
     },
     //注册事件监听
     addListener(){
-        
+      //失去焦点效验验证码
+      $("#loginCode").on("blur",this.verifyHandler);
+      //点注册按钮
+        $(".login").on("click",this.loginHandler);
+
+    },
+    //效验验证码
+    verifyHandler(){
+      //获取输入的验证码值
+      var code = $("#loginCode").val();
+      //aja请求
+      $.getJSON("/captcha/verify",{code},(data)=>{
+        console.log(data);
+        if(data.res_code ===1){
+          $(".code-info").text("验证通过")
+        }else{
+          $(".code-info").text("输入错误")
+        }
+      })
+
+    },
+    //登录业务处理
+    loginHandler(){
+      //待传到服务器的用户登录数据
+      var data = $(".login_form").serialize();
+      //ajax提交登录处理
+      $.post("/users/login",data,(resData)=>{
+        console.log(resData);
+      }).done(()=>{
+        //modal("hide"); 手动隐藏模态框
+        $("#myModal_a").modal("hide");
+      }).done(()=>{
+        $(".login_success").removeClass("hide").siblings(".not_login").remove();
+      })
+
     }
 
 })
