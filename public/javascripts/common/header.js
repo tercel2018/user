@@ -60,7 +60,7 @@ $.extend(Header.prototype,{
       //先到查找你public中查找，找不到再到路由中间件中查找
       $.get("/captcha/gencode",(data) =>{
         // console.log(data);
-        $(".code_img").html(data);
+        $(".code_img_a").html(data);
       },"text")
     }
 });

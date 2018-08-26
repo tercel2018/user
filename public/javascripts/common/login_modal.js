@@ -27,8 +27,8 @@ LoginModal.template = `
                 <input type="password" class="form-control"  name = "password" placeholder="输入密码">
               <div class="form-group"> 
                 <label for="loginCode">验证码</label>
+                <p class="help-block code_img_a">验证码</p>
                 <input type="text" id="loginCode" placeholder="验证码">
-                <p class="help-block code_img">这是个验证码图片</p>
                 <span class="input-group-addon code-info">信息</span>
                 
               </div>

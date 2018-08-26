@@ -11,7 +11,23 @@
     "ejs": "~2.5.7",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
+    "mongoose": "^5.2.9",
     "morgan": "~1.9.0",
     "svg-captcha": "^1.3.11"
-  }
+  },
+  "main": "app.js",
+  "devDependencies": {
+    "express-session": "^1.15.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tercel2018/user.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tercel2018/user/issues"
+  },
+  "homepage": "https://github.com/tercel2018/user#readme",
+  "description": ""
 }
