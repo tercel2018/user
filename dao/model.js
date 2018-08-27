@@ -1,7 +1,7 @@
 //引入mongoose
 const mongoose = require("mongoose");
 //连接数据库 默认端口27017
-mongoose.connect('mongodb://localhost/test/user');
+mongoose.connect('mongodb://localhost/test');
 //用户模型
 const User = mongoose.model("user",{
     username:String,
@@ -9,4 +9,6 @@ const User = mongoose.model("user",{
     email:String
 });
 //职位模型
+// ...
+
 module.exports = {User};

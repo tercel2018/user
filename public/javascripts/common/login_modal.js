@@ -18,16 +18,17 @@ LoginModal.template = `
         <div class="modal-body">
            <!-- 表单 -->
           <form class= "login_form">
+          <div class="alert alert-danger hide login-err">用户名或密码错误</div>
               <div class="form-group">
                 <label for="exampleInputEmail1" >用户名</label>
                 <input type="email" class="form-control" name ="username" placeholder="请输入用户名">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">密码</label>
-                <input type="password" class="form-control"  name = "password" placeholder="输入密码">
+                <input type="password" class="form-control" autocomplete='tel'  name = "password" placeholder="输入密码">
               <div class="form-group"> 
                 <label for="loginCode">验证码</label>
-                <p class="help-block code_img_a">验证码</p>
+                <p class="help-block code_img">验证码</p>
                 <input type="text" id="loginCode" placeholder="验证码">
                 <span class="input-group-addon code-info">信息</span>
                 
@@ -52,9 +53,8 @@ $.extend(LoginModal.prototype,{
     addListener(){
       //失去焦点效验验证码
       $("#loginCode").on("blur",this.verifyHandler);
-      //点注册按钮
+      //点击登录按钮
         $(".login").on("click",this.loginHandler);
-
     },
     //效验验证码
     verifyHandler(){
@@ -69,7 +69,6 @@ $.extend(LoginModal.prototype,{
           $(".code-info").text("输入错误")
         }
       })
-
     },
     //登录业务处理
     loginHandler(){
@@ -77,12 +76,18 @@ $.extend(LoginModal.prototype,{
       var data = $(".login_form").serialize();
       //ajax提交登录处理
       $.post("/users/login",data,(resData)=>{
-        console.log(resData);
+         console.log(resData);
+        if(resData.res_code ===1){
+          $("#myModal_a").modal("hide");
+          $(".login_success").removeClass("hide").siblings(".not_login").remove();
+          //
+        }else{
+          $(".login-err").removeClass("hide");
+        }
       }).done(()=>{
         //modal("hide"); 手动隐藏模态框
-        $("#myModal_a").modal("hide");
+       
       }).done(()=>{
-        $(".login_success").removeClass("hide").siblings(".not_login").remove();
       })
 
     }

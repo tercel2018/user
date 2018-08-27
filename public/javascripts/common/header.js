@@ -53,15 +53,15 @@ $.extend(Header.prototype,{
     },
     //注册验证码
     addListener(){
-      $(".link-login,link-regiter").on("click",this.genCaptchaHandler)
+      $(".link-login,.link-regiter").on("click",this.genCaptchaHandler)
     },
     //生成验证码
     genCaptchaHandler(){
       //先到查找你public中查找，找不到再到路由中间件中查找
       $.get("/captcha/gencode",(data) =>{
         // console.log(data);
-        $(".code_img_a").html(data);
-      },"text")
+        $(".code_img").html(data);
+      },"text");
     }
 });
 

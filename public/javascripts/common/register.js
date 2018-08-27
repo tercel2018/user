@@ -19,26 +19,26 @@ Register.template =`
         <form class= "register_form">
             <div class="form-group">
               <label for="exampleInputEmail1">用户名</label>
-              <input type="email" class="form-control" id="user" placeholder="请输入用户名">
+              <input type="text" name="username" class="form-control" id="user"  placeholder="请输入用户名">
             
               </div>
             <div class="form-group">
               <label for="exampleInputPassword1">密码</label>
-              <input type="password" class="form-control" id="password_a" placeholder="输入密码">
+              <input type="password"  autocomplete='tel'   name = "password" class="form-control" id="password_a" placeholder="输入密码">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">确认密码</label>
-                <input type="password" class="form-control" id="password_b" placeholder="再次输入密码">
+                <input type="password"  autocomplete='tel'  class="form-control" id="password_b" placeholder="再次输入密码">
               </div>
               <div class="form-group">
                   <label for="exampleInputEmail1">邮箱</label>
-                  <input type="email" class="form-control" id="emaill" placeholder="邮箱">
+                  <input type="email" name="email" class="form-control" id="emaill" placeholder="邮箱">
                 </div>
             <div class="modal-footer">
             <div class="form-group"> 
-            <p class="code_img_b">这是个验证码图片</p>   
+            <p class="code_img">这是个验证码图片</p>   
             <label for="loginCode">验证码</label>
-            <input type="text" id="loginCode_a" placeholder="验证码">
+            <input type="text" id="loginCode_a"  placeholder="验证码">
             <span class="input-group-addon code-info">信息</span>             
             
           </div>
@@ -60,8 +60,7 @@ $.extend(Register.prototype,{
       //失去焦点效验验证码
       $("#loginCode_a").on("blur",this.verifyHandler);
       //点注册按钮
-        $(".btn-default").on("click",this.loginHandler,
-        this.registerHandler);
+        $(".btn-default").on("click",this.registerHandler);
     },
      //生成验证码
      genCaptchaHandler(){
@@ -87,21 +86,21 @@ $.extend(Register.prototype,{
 
     },
 
-    //登录业务处理
-    loginHandler(){
-      //待传到服务器的用户登录数据
-      var data = $(".btn-default").serialize();
-      //ajax提交登录处理
-      $.post("/users/login",data,(resData)=>{
-        console.log(resData);
-      }).done(()=>{
-        //modal("hide"); 手动隐藏模态框
-        $("#myModal").modal("hide");
-      }).done(()=>{
-        $(".login_success").removeClass("hide").siblings(".not_login").remove();
-      })
+    // //登录业务处理
+    // loginHandler(){
+    //   //待传到服务器的用户登录数据
+    //   var data = $(".btn-default").serialize();
+    //   //ajax提交登录处理
+    //   $.post("/users/login",data,(resData)=>{
+    //     console.log(resData);
+    //   }).done(()=>{
+    //     //modal("hide"); 手动隐藏模态框
+    //     $("#myModal").modal("hide");
+    //   }).done(()=>{
+    //     $(".login_success").removeClass("hide").siblings(".not_login").remove();
+    //   })
 
-    },
+    // },
     //注册业务处理
     registerHandler(){
       //待传到服务器的用户注册数据
