@@ -4,6 +4,7 @@ function Header(){
     this.createDom();
     this.createModal();
     this.addListener();
+    this.load();
 }
 //头部导航模板
 Header.template = `
@@ -33,8 +34,8 @@ Header.template = `
               <li><a href="#"  class= "link-regiter" data-toggle="modal" data-target="#myModal">注册</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right hide login_success">
-              <li><a href="#"  >你好！XXX</a></li> 
-              <li><a href="#" >注销</a></li>
+              <li><a class ="xx" href="#"  >你好！</a></li> 
+              <li><a class = "link-logout" href="#" >注销</a></li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -51,9 +52,24 @@ $.extend(Header.prototype,{
       new LoginModal();
       new Register();     
     },
+    load(){ 
+      //页面加载时判断是否有用户登录过 sessionStorage.loginUser 是json格式
+      let user = sessionStorage.loginUser;
+      if(user) {
+        user = JSON.parse(user);
+        console.log(user);
+        $(".login_success")
+          .removeClass("hide")
+          $(".xx").text(`你好：${user.username}`);
+          $(".not_login").remove();
+      }
+    },
     //注册验证码
     addListener(){
-      $(".link-login,.link-regiter").on("click",this.genCaptchaHandler)
+      //点击登录，注册链接
+      $(".link-login,.link-regiter").on("click",this.genCaptchaHandler);
+      //点击注销链接
+      $(".link-logout").on("click",this.logoutHandler);
     },
     //生成验证码
     genCaptchaHandler(){
@@ -62,6 +78,13 @@ $.extend(Header.prototype,{
         // console.log(data);
         $(".code_img").html(data);
       },"text");
+    },
+    //注销
+    logoutHandler(){
+      //移除会话
+      sessionStorage.removeItem("loginUser");
+      //跳转页面
+      window.location.href = "/index.html";
     }
 });
 

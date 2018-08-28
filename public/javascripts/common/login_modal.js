@@ -52,7 +52,7 @@ $.extend(LoginModal.prototype,{
     //注册事件监听
     addListener(){
       //失去焦点效验验证码
-      $("#loginCode").on("blur",this.verifyHandler);
+       $("#loginCode").on("blur",this.verifyHandler);
       //点击登录按钮
         $(".login").on("click",this.loginHandler);
     },
@@ -64,7 +64,8 @@ $.extend(LoginModal.prototype,{
       $.getJSON("/captcha/verify",{code},(data)=>{
         console.log(data);
         if(data.res_code ===1){
-          $(".code-info").text("验证通过")
+          $(".code-info").text("验证通过");
+          
         }else{
           $(".code-info").text("输入错误")
         }
@@ -80,7 +81,11 @@ $.extend(LoginModal.prototype,{
         if(resData.res_code ===1){
           $("#myModal_a").modal("hide");
           $(".login_success").removeClass("hide").siblings(".not_login").remove();
-          //
+          //将登录成功的用户信息保存起来，保存到sessionStorage中,页面关闭后销毁
+          // sessionStorage.loginUser = JSON.stringify(resData.res_body);
+        sessionStorage.setItem("loginUser", JSON.stringify(resData.res_body));
+        //登录成功后重新加载页面
+        window.location.reload();
         }else{
           $(".login-err").removeClass("hide");
         }

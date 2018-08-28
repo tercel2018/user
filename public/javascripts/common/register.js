@@ -79,6 +79,8 @@ $.extend(Register.prototype,{
         console.log(data);
         if(data.res_code ===1){
           $(".code-info").text("验证通过")
+
+          
         }else{
           $(".code-info").text("输入错误")
         }
