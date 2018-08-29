@@ -6,11 +6,11 @@ var logger = require('morgan');
 //引入express-sesstion中间件
 var session = require("express-session");
 
-
 //路由中间件
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var captchaRouter = require('./routes/captcha.js');
+var positionRouter = require("./routes/positions.js");
 
 var app = express();
 
@@ -38,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/captcha', captchaRouter);
+app.use('/position', positionRouter);
 
 
 // catch 404 and forward to error handler
