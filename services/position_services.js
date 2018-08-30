@@ -23,7 +23,7 @@ const PositionService = {
     listByPage(req,res,next){
         //获取当前查询的页码
         let {page} = req.query;
-        page = page ||1;
+        page = page||1;
         const info = PositionDao.findByPage(page);
         //调用数据库查询方法
         PositionDao

@@ -26,10 +26,23 @@ $.extend(Position.prototype,{
     //注册事件监听
     addListener(){
         $(".btn_pso").on("click",this.addListenerHandler);
+        // 翻页
+		$(".pagination").on("click", "li", this.loadByPage);
     },
     //页面加载。查询第一页职位信息
     load(){
-        $.getJSON("/positions/list?",data=>{
+        this.loadByPage(1);
+    },
+    loadByPage(){
+        let page;
+		if (typeof event === "number") // 直接传递页码
+			page = event;
+		else { // 获取待加载页码			
+			console.log(event.target)
+			page = $(event.target).text();
+        }
+        
+        $.getJSON("/positions/list?page="+page,data=>{
             //待渲染的职位数据
             const positions = data.res_body.data;
             //EJS渲染模板
@@ -37,10 +50,11 @@ $.extend(Position.prototype,{
             //显示
             $(".list-table").html(html);
             //显示页码数据
-            const pagination = ejs.render(Position.paginationTemplate,{totalPages: data.res_body.totalPages, currentPage:page})
+            const pagination = ejs.render(Position.paginationTemplate, {totalPages: data.res_body.totalPages, currentPage : page})
             $(".pagination").html(pagination);
         })
     },
+
     addListenerHandler(){
         // const data = $(".add_form").serialize();
         // $.post("/position/add",data,(data)=>{
