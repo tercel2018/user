@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const path = require("path");
-const PositionServise = require("../services/position_services.js");
+const PositionService = require("../services/position_services.js");
 
 //引入multer中间件
 const multer = require("multer");
@@ -24,6 +24,10 @@ const storage = multer.diskStorage({
   
   //添加职位
   //http://localhost:3000/postions/add
-  router.post("/add",upload.single("logo"),PositionServise.add);
+  router.post("/add",upload.single("logo"),PositionService.add);
   
- module.exports = router;
+//按业查询
+//http://localhost:3000/postions/list?page=1  PositionService
+  router.get("/list",PositionService.listByPage)
+
+ module.exports = router; 

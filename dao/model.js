@@ -15,6 +15,7 @@ const Position = mongoose.model("position",{
     name:String,
     city:String,
     money:Number,
+    suffer:String,
 });
 
 module.exports = {User,Position};

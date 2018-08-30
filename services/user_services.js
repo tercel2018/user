@@ -35,7 +35,6 @@ const UserService = {
             const{username,password,email} = req.body;
         //验证用户名是否被注册
         //...
-
         // //密码加密
         const passwordBcrypt = bcrypt.hashSync(password,10);
         console.log(passwordBcrypt),

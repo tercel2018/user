@@ -20,17 +20,38 @@ const PositionService = {
             });
     },
     //分页查询职位
-    letByPage(req,res,next){
+    listByPage(req,res,next){
         //获取当前查询的页码
         let {page} = req.query;
         page = page ||1;
+        const info = PositionDao.findByPage(page);
         //调用数据库查询方法
         PositionDao
-            .findByPage(page)
-            .then(data =>{
-                console.log(data);
-            })
-            .catch();
+            .count()
+            .then((data) =>{
+                PositionDao
+                    .findByPage(page)
+                    .then(pageData =>{
+                //总页数
+                const totalPages = Math.ceil(data/5);
+                res.json({res_code:1,res_error:"",res_body:{data:pageData,count:data,totalPages}});
+                 }).catch(err=>{
+                res.json({res_code:-1,res_error:err,res_body:{}})
+             });
+       
+            }).catch(err =>{
+                res.json({res_code:-1,res_error:err,res_body:{}})
+            });
+
+        // info
+        //     // .findByPage(page)
+        //     .then(data =>{
+        //         // console.log(data);
+        //         res.json({res_code:1,res_error:"",res_body:data})
+        //     })
+        //     .catch(err =>{
+        //         res.json({res_code:-1,res_error:err,res_body:{}})
+        //     });
         
     }
 }
