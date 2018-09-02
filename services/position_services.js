@@ -19,6 +19,36 @@ const PositionService = {
                 res.json({res_code:-1,res_error:err,res_body:{}})
             });
     },
+    del(req,res,next){
+        let {id} = req.query;
+        console.log(id);
+        const del = PositionDao.delete(id);
+        del
+        .then(data=>{
+            res.json({res_code:1,res_error:"",res_body:{data}})
+        })
+        .catch(err =>{
+            res.json({res_code:-1,res_error:err,res_body:{}})
+        })
+    },
+    add_up(req,res,next){
+
+        let logo = "";
+        if(req.file)
+            logo = req.file.filename;
+         //重请求主体中解构文本数据    从请求主体中拿到
+         const{post,name,suffer,city,money,id} = req.body;
+           //保存到数据库
+        console.log(id,city);
+        PositionDao
+        .add_up({logo,post,name,suffer,city,money,id})
+        .then(data =>{
+            res.json({res_code:1,res_error:"",res_body:data})
+        })
+        .catch(err=>{
+            res.json({res_code:-1,res_error:err,res_body:{}})
+        });
+    },
     //分页查询职位
     listByPage(req,res,next){
         //获取当前查询的页码

@@ -34,7 +34,10 @@
 <button type="button"  data-toggle="modal" data-target="#myModal_c">
     添加
   </button>
-
+  <div class="alert alert-warning alert-dismissible hidden" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>确定删除</strong>
+  </div>
   <!-- 分页 -->
   <nav aria-label="Page navigation">
     <ul class="pagination">
@@ -69,24 +72,19 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">职位名称</label>
-                <input type="text" class="form-control" autocomplete='tel'  name = "post" placeholder="职位名称">
+                <input type="text" class="form-control " autocomplete='tel'  name = "post" placeholder="职位名称">
               </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">公司名称</label>
-                  <input type="text" class="form-control" autocomplete='tel'  name = "name" placeholder="请输入公司名称">
-                </div>
-
-                <div class="form-group">
                   <label for="exampleInputPassword1">工作经验</label>
-                  <input type="text" class="form-control" autocomplete='tel'  name = "suffer" placeholder="输入工作经验">
+                  <input type="text" class="form-control " autocomplete='tel'  name = "suffer" placeholder="输入工作经验">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">工作地点</label>
-                  <input type="text" class="form-control" autocomplete='tel'  name = "city" placeholder="工作地点">
+                  <input type="text" class="form-control " autocomplete='tel'  name = "city" placeholder="工作地点">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">岗位薪资</label>
-                  <input type="text" class="form-control" autocomplete='tel'  name = "money" placeholder="岗位薪资">
+                  <input type="text" class="form-control " autocomplete='tel'  name = "money" placeholder="岗位薪资">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn login btn_pso">提交</button>
@@ -98,6 +96,48 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
        
+    <!-- Modal 修改模态框-->
+    <div class="modal fade" tabindex="-1" role="dialog" class="modal" id="myModal_up">
+
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">职位信息</h4>
+          </div>
+          <div class="modal-body">
+             <!-- 表单 -->
+            <form class= "add_up">
+                <div class="form-group">
+                  <label for="exampleInputEmail1" >公司logo</label>
+                  <input type="file" class="form-control" name ="logo" placeholder="未选择任何文件">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">职位名称</label>
+                  <input type="text" class="form-control form-a" autocomplete='tel'  name = "post" placeholder="职位名称">
+                </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">工作经验</label>
+                    <input type="text" class="form-control form-c" autocomplete='tel'  name = "suffer" placeholder="输入工作经验">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">工作地点</label>
+                    <input type="text" class="form-control form-d" autocomplete='tel'  name = "city" placeholder="工作地点">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">岗位薪资</label>
+                    <input type="text" class="form-control form-e" autocomplete='tel'  name = "money" placeholder="岗位薪资">
+                  </div>
+                  <input type="text" class="id hidden" autocomplete='tel'  name = "id" placeholder="岗位薪资">
+                  <div class="modal-footer">
+                    <button type="button" class="btn  btn_pso_up" name="" >提交</button>
+                  </div>
+              </form>
+          </div>
+         
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     </div>
       <script src="/lib/Jquery/jquery-3.2.1.js"></script>
       <script src="/lib/bootstrap/js/bootstrap.min.js"></script>

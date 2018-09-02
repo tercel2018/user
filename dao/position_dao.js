@@ -20,14 +20,19 @@ const PositionDao = {
         // const totallPage = Math.ceil(count/pageSize);       
         // return Position
     },
-    updata(){
-        
+    delete(id){        
+        //删除用户名为“_id”的文档记录
+        const conditions = {_id: id};
+      return Position.remove(conditions);
+    },
+    add_up(data_up){        
+        let conditions = { _id: data_up.id};
+        console.log(conditions);
+      return Position.update(conditions, data_up)
     },
     find(){
 
     },
-    delete(){
-
-    },
+ 
 }
 module.exports = PositionDao;

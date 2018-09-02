@@ -27,7 +27,13 @@ const storage = multer.diskStorage({
   router.post("/add",upload.single("logo"),PositionService.add);
   
 //按业查询
-//http://localhost:3000/postions/list?page=1  PositionService
+//http://localhost:3000/positions/list?page=1  PositionService
   router.get("/list",PositionService.listByPage)
 
+//删除
+//http://localhost:3000/positions/list?page=1  PositionService
+router.get("/del",PositionService.del)
+
+//更新数据
+router.post("/add_up",PositionService.add_up);
  module.exports = router; 
